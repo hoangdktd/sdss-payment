@@ -1,0 +1,13 @@
+# [START app_yaml]
+runtime: nodejs  
+env: flex 
+env_variables:
+  DB_USER: postgres
+  DB_PASS: cublick2018
+  DB_NAME: postgres
+  DB_HOST: /cloudsql/sdss-payment:asia-east1:sdsspayment
+  POSTGRES_SOCKET_PATH: /cloudsql/sdss-payment:asia-east1:sdsspayment/.s.PGSQL.5432
+
+beta_settings:
+  cloud_sql_instances: sdss-payment:asia-east1:sdsspayment
+# [END app_yaml]

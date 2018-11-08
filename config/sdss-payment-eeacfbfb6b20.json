@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sdss-payment",
+  "private_key_id": "eeacfbfb6b2074eb5fcc22344d932630acb326c3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDUmEda9Sv2HBcv\n3hv7uS7ZpFOFH05sZzDeeVj/ls0shU1Re8HhSEJPjpk/+azXBctDgd9UxiN/kJeX\nxQZKDQrQw2Y1twKrXh/hX4s5efEGys69vaVqOsfdqhyeWtpSC9tP//N3dFfUCFtN\nNv+0EWkTle8VkzLy7+2pH0gJUGwF4vl85bdhPBf4k0zdQGj/FwDYMtviOJdsfgZu\n5aQy87WOw2Isn+WtduVR05ANgBIMiFA7snjrOGpWiU08QI0JWWo/YR7NrjyxXq5P\nqWI2Ys5aFBxjOfzvrfWdLhHZWBzSQGEkS7KZ47mfmX1Yg8u0S8V0go+FsvHVDZ8B\nVALIegSRAgMBAAECgf8Pws+yHpsJE+wO0G34AN1IUAvLwsES/ajR1Y0+OvUwZ8bj\nqO58FS9VVpe7S8yp5EloJ9NheuRcK2FnDw74TnSO0EMI7cMfkUrWb+Q9I/KKiQlA\nEonrkOVgZEwwMUFznmK+pkBr4A7i2VEWLbhR++MeYJnpBOYHZ2I8jOUk9kwL44qf\nPKkpILpMKO2Clnzkj7FfsV444+FM1G6mPnL5SJ9m+s5keC5PeS2immZGz99oLN8G\njB/NO2wolB44yaTyOJYox3T5hSDJTNGzDsnoOPLbkeYv0Qh+I/EZ8GnOmpaOIi0w\nfuQVcYCleEhK4ZZpTJCS4fRueDTWdJODGDTTPGECgYEA8UENbQjq+hzZAZD4IvYv\ngSbUMZMcqrpVC6bWFgznJ4IpWSl7VFPpLrb9IiLNxlDN2xmDiSX4+WTm2ltfvY0u\n10JbEXOhRkgrO5w9adLmSGPAh0bTEiWfht8VO2NO2Z8otVYusCMmt7nZIOleCkhQ\n834E/93y6HQIU01aY3G+KnECgYEA4ZbKFBYKHyV2n45j1wQGqMCuTQkG37tpka7s\nOXAvyRUOXwoaThDwgAe6JDp11QENib+F/wOaRkzyvYJTTQiFLgirr3Fnd3owDvLn\nfleIlb3ftr3iH6mlp+YzngemEz/XARdh5ZKLgoN9UU7fb1r2XadkuliuuITGYudY\nL7ytTCECgYEAlbt9PLXzOMZcvQcfqntHIo5Z1mbqvN+m1vN2HftmH/Q9+3Oucrkd\nmXvDAcO+GR6flSNxqtZhf0/ro4xgkIGml708TkmIx9kU1At1Zk+Z00XuAUeoyrOF\nHi0ovVI2ZwTMPDfABFvctNzo8O9GCXW2oFkPe0pib3lMjX8N4Xh/wVECgYEAhBRI\nPphk1rWVjXfN5t8ZkwY1Ry9I0gelmMFk14BiygXFA0oj+p8aYKulhX6g7NSP+52i\nM5wFYLG+0cwTP6AEcd5rvu3T2XU13BrGBQf1FU81Q4ZLdaRbNEGo6RarWsve82mg\nTMyPWBvqbIeUdFs6sbzHUf+IVMqQaOnwjQqYIGECgYBlfvnrAhVD1DR4/Khu387O\n+fplvnQzvQbDJp2fMccWLja6DMmCj/IzAANt70a81wHIcb9B527svxBLv9NbkDtQ\n52GXO6wZarWGMBWTAitKRrynlu+ftKoX7+MIKkYQqgZU2kaglQljfcFlCmateBzM\n7CxEpscuHINMPohpQNImdw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "cublick@sdss-payment.iam.gserviceaccount.com",
+  "client_id": "113849431141079660976",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cublick%40sdss-payment.iam.gserviceaccount.com"
+}

@@ -1,0 +1,67 @@
+{
+  "name": "SDSS_API_PAYMENT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api/app.js",
+  "scripts": {
+    "start": "npm run nodemon",
+    "dev": "cross-env NODE_ENV=development node ./api/app.js",
+    "nodemon": "nodemon --exec npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/nodejs-repo-tools": "^2.3.5",
+    "@google-cloud/storage": "^2.2.0",
+    "async": "^2.6.1",
+    "ava": "^0.25.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "express-routes-mapper": "^1.0.6",
+    "helmet": "^3.14.0",
+    "jsonwebtoken": "^8.3.0",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.1",
+    "pg": "^7.6.0",
+    "pg-hstore": "^2.3.2",
+    "prompt": "^1.0.0",
+    "sequelize": "^4.41.0",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.5"
+  },
+  "devDependencies": {},
+  "cloud-repo-tools": {
+    "requiresKeyFile": true,
+    "requiresProjectId": true,
+    "test": {
+      "app": {
+        "requiredEnvVars": [
+          "SQL_USER",
+          "SQL_PASSWORD",
+          "SQL_DATABASE",
+          "SQL_PORT",
+          "INSTANCE_CONNECTION_NAME"
+        ],
+        "msg": "Last 10 visits:",
+        "substitutions": "YOUR_SQL_USER=$SQL_USER,YOUR_SQL_PASSWORD=$SQL_PASSWORD,YOUR_SQL_DATABASE=$SQL_DATABASE,YOUR_INSTANCE_CONNECTION_NAME=$INSTANCE_CONNECTION_NAME",
+        "args": [
+          "server.js"
+        ]
+      },
+      "build": {
+        "requiredEnvVars": [
+          "SQL_USER",
+          "SQL_PASSWORD",
+          "SQL_DATABASE",
+          "SQL_PORT",
+          "INSTANCE_CONNECTION_NAME"
+        ]
+      }
+    }
+  }
+}
