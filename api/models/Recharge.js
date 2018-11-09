@@ -8,33 +8,34 @@ const sequelize = require('../../config/database');
 
 // hooks are functions that can run before or after a specific event
 const hooks = {
-  // beforeCreate(user) {
-  //   // user.password = bcryptSevice.password(user);
-  // },
+  beforeCreate(recharge) {
+  },
 };
 
 // naming the table in DB
-const tableName = 'user';
+const tableName = 'recharge';
 
 // the actual model
-const User = sequelize.define('User', {
-  userId: {
+const Recharge = sequelize.define('recharge', {
+  rechargeId: {
     type: Sequelize.STRING,
-    primaryKey: true,
     unique: true,
   },
-  userName: {
+  userId: {
     type: Sequelize.STRING,
   },
-  userType: {
+  amount: {
+    type: Sequelize.FLOAT,
+  },
+  exchangeRate: {
+    type: Sequelize.FLOAT,
+  },
+  paymentDate: {
+    type: Sequelize.DATE,
+  },
+  paymentStatus: {
     type: Sequelize.STRING,
-  },
-  eCoin: {
-    type: Sequelize.INTEGER,
-  },
-  email: {
-    type: Sequelize.STRING,
-  },
+  }
 }, { hooks, tableName });
 
 // instead of using instanceMethod
@@ -42,14 +43,12 @@ const User = sequelize.define('User', {
 // to the prototype object of our model.
 // as we do not want to share sensitive data, the password
 // field gets ommited before sending
-User.prototype.toJSON = function () {
+Recharge.prototype.toJSON = function () {
   const values = Object.assign({}, this.get());
-
-  // delete values.password;
 
   return values;
 };
 
 // IMPORTANT
 // don't forget to export the Model
-module.exports = User;
+module.exports = Recharge;

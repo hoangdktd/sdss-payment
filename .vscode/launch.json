@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}\\api\\app.js"
+            "program": "${workspaceRoot}\\api\\api.js"
         },
         {
             "name": "Attach to node",
@@ -16,6 +16,7 @@
             "request": "attach",
             "address": "localhost",
             "port": 8080,
+            "sourceMaps": true,
             "processId": "${command:PickProcess}"
         }
     ]

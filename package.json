@@ -2,10 +2,10 @@
   "name": "SDSS_API_PAYMENT",
   "version": "1.0.0",
   "description": "",
-  "main": "api/app.js",
+  "main": "api/api.js",
   "scripts": {
     "start": "npm run nodemon",
-    "dev": "cross-env NODE_ENV=development node ./api/app.js",
+    "dev": "cross-env NODE_ENV=development node ./api/api.js",
     "nodemon": "nodemon --exec npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,19 +20,21 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
     "crypto": "^1.0.1",
     "express": "^4.16.4",
     "express-routes-mapper": "^1.0.6",
+    "fs": "0.0.1-security",
     "helmet": "^3.14.0",
     "jsonwebtoken": "^8.3.0",
     "knex": "^0.15.2",
     "morgan": "^1.9.1",
+    "nodemon": "^1.18.5",
     "pg": "^7.6.0",
     "pg-hstore": "^2.3.2",
     "prompt": "^1.0.0",
     "sequelize": "^4.41.0",
-    "cross-env": "^5.2.0",
-    "nodemon": "^1.18.5"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {},
   "cloud-repo-tools": {
