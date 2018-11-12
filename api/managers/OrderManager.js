@@ -93,14 +93,16 @@ module.exports = {
             return Order.sequelize.transaction(function (t) {
                 console.log('start transaction');
                 const orderPromises = [];
+
                 for (let i = 0; i < params.listProducts.length; i++) {
                     const childOrder = params.listProducts[i];
                     console.log(childOrder.ownerId);
+                    console.log('childOrder.eCoinF   ----   ' + childOrder.eCoinF);
                     const newPromise = Order.create({
                         orderId: uuidv1(),
                         productId: childOrder.id,
                         productName: childOrder.name,
-                        price: childOrder.price,
+                        eCoinF: childOrder.eCoinF,
                         ownerId: childOrder.ownerId,
                         buyerId: params.userId,
                         orderDate: sequelize.fn("NOW"),
@@ -113,33 +115,26 @@ module.exports = {
                 return Promise.all(orderPromises).then(function(orders) {
                     
                     const userPromises = [];
+                    let totalPrice = 0;
+                    const sanitizeListOrder = [];
                     for (let i = 0; i < orders.length; i++) {
-                        const order = orders[i];
-                        // update ecoin for buyer
-                        console.log(order.userId);
-                        userPromises.push(
-                            User.findOne({
-                                where: {
-                                    userId: params.userId
-                                },
-                            }, {transaction: t}).then( (user) => {
-                                if(!user) {
-                                    const totalECoin = 0 - order.price;
-                                    console.log('create new user  ' + params.userId + '   coin ====  ' + totalECoin);
-                                    return  User.create({
-                                        userId: params.userId,
-                                        eCoin: totalECoin
-                                    }, {transaction: t});
-                                } else {
-                                    const totalECoin = (user.eCoin ? user.eCoin : 0) - (order.price);
-                                    console.log('update user  ' + params.userId + '   coin ====  ' + totalECoin);
-                                    return user.update({
-                                        eCoin: totalECoin
-                                    }, {transaction: t});
-                                }
-                            })
-                        );
-
+                        const childOrder = orders[i];
+                        console.log(childOrder.ownerId);
+                        let indexOfItemInSanitizeList = -1;
+                        for (let j = 0; j < sanitizeListOrder.length; j++) {
+                            if (childOrder.ownerId && childOrder.ownerId === sanitizeListOrder[j].ownerId) {
+                                sanitizeListOrder[j].eCoinF = sanitizeListOrder[j].eCoinF + childOrder.eCoinF;
+                                indexOfItemInSanitizeList = j;
+                                break;
+                            }
+                        }
+                        if (indexOfItemInSanitizeList === -1) {
+                            sanitizeListOrder.push(childOrder);
+                        }
+                    }
+                    for (let i = 0; i < sanitizeListOrder.length; i++) {
+                        const order = sanitizeListOrder[i];
+                        totalPrice = totalPrice + order.eCoinF;
                         // update ecoin for owner
                         userPromises.push(
                             User.findOne({
@@ -148,15 +143,15 @@ module.exports = {
                                 },
                             }, {transaction: t}).then( (user) => {
                                 if(!user) {
-                                    const totalECoin = 0 + order.price;
-                                    console.log('create owner new user  ' + params.userId + '   coin ====  ' + totalECoin);
+                                    const totalECoin = 0 + order.eCoinF;
+                                    console.log('create owner user  ' + order.ownerId + '   coin ====  ' + totalECoin);
                                     return  User.create({
                                         userId: order.ownerId,
                                         eCoin: totalECoin
                                     }, {transaction: t});
                                 } else {
-                                    const totalECoin = (user.eCoin ? user.eCoin : 0) + (order.price);
-                                    console.log('update owner user  ' + params.userId + '   coin ====  ' + totalECoin);
+                                    const totalECoin = (user.eCoin ? user.eCoin : 0) + (order.eCoinF);
+                                    console.log('update owner user  ' + order.ownerId + '   coin ====  ' + totalECoin);
                                     return user.update({
                                         eCoin: totalECoin
                                     }, {transaction: t});
@@ -164,6 +159,30 @@ module.exports = {
                             })
                         );
                     }
+
+                    // update ecoin for buyer
+                    userPromises.push(
+                        User.findOne({
+                            where: {
+                                userId: params.userId
+                            },
+                        }, {transaction: t}).then( (user) => {
+                            if(!user) {
+                                const totalECoin = 0 - totalPrice;
+                                console.log('create new user  ' + params.userId + '   coin ====  ' + totalECoin);
+                                return  User.create({
+                                    userId: params.userId,
+                                    eCoin: totalECoin
+                                }, {transaction: t});
+                            } else {
+                                const totalECoin = (user.eCoin ? user.eCoin : 0) - (totalPrice);
+                                console.log('update user  ' + params.userId + '   coin ====  ' + totalECoin);
+                                return user.update({
+                                    eCoin: totalECoin
+                                }, {transaction: t});
+                            }
+                        })
+                    );
                     
                     return Promise.all(userPromises);
                 });

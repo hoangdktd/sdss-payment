@@ -27,7 +27,7 @@ const Order = sequelize.define('order', {
   productName: {
     type: Sequelize.STRING,
   },
-  price: {
+  eCoinF: {
     type: Sequelize.FLOAT,
   },
   ownerId: {
