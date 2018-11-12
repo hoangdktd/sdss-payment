@@ -1,6 +1,9 @@
 const User = require('../models/User');
+const userManager = require('../managers/UserManager');
 const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
+const oRest = require('../utils/restware');
+const oConstant = require('../utils/constant');
 
 const UserController = () => {
   const register = async (req, res) => {
@@ -53,38 +56,26 @@ const UserController = () => {
   };
 
   const get = async (req, res) => {
-    // params is part of an url
-    const { id } = req.params;
-
-    try {
-      const user = await User.findOne({
-        where: {
-          id,
-        },
-      });
-
-      if(!user) {
-        return res.status(400).json({ msg: 'Bad Request: User not found' });
+    console.log('req.body.userI             ' + req.query.userId);
+    console.log('req.body.userI             ' + req.query);
+    console.log('req.body.userI             ' + req);
+    userManager.get({
+      userId: req.query.userId
+    }, function (errorCode, errorMessage, httpCode, returnUser) {
+      if (errorCode) {
+          return oRest.sendError(res, errorCode, errorMessage, httpCode);
       }
-
-      return res.status(200).json({ user });
-    } catch (err) {
-      // better save it to log file
-      console.error(err);
-
-      return res.status(500).json({ msg: 'Internal server error' });
-    }
+      return oRest.sendSuccess(res, returnUser, httpCode);
+    });
   };
 
   const getAll = async (req, res) => {
-    try {
-      const users = await User.findAll();
-
-      return res.status(200).json({ users });
-    } catch (err) {
-      console.log(err);
-      return res.status(500).json({ msg: 'Internal server error' });
-    }
+    userManager.getAll(null, function (errorCode, errorMessage, httpCode, returnUsers) {
+      if (errorCode) {
+          return oRest.sendError(res, errorCode, errorMessage, httpCode);
+      }
+      return oRest.sendSuccess(res, returnUsers, httpCode);
+    });
   };
 
 

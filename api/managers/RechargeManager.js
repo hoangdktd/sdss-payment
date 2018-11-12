@@ -37,7 +37,7 @@ module.exports = {
                     }, {transaction: t}).then( (user) => {
                         if(!user) {
                             const totalECoin = recharge.amount / recharge.exchangeRate;
-                            console.log(totalECoin);
+                            console.log('totalECoin -----' + totalECoin);
                             return  User.create({
                                 userId: recharge.userId,
                                 eCoin: totalECoin
